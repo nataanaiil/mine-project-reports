@@ -1,0 +1,37 @@
+filename,caption
+ARIMA Claude_actual_vs_predicted_h1.png,ARIMA model with Predicting One-Step Ahead
+ARIMA Claude_actual_vs_predicted_h2.png,ARIMA model with Predicting Two-Step Ahead
+ARIMA Claude_actual_vs_predicted_h12_combined.png,ARIMA model with Predicting Both Horizons
+ARIMA Claude_error_distribution.png,
+ARIMA Claude_metrics_comparison.png,
+ARIMA GPT_actual_vs_predicted_h1.png,ARIMA 2nd model with Predicting One-Step Ahead
+ARIMA GPT_actual_vs_predicted_h2.png,ARIMA 2nd model with Predicting Two-Step Ahead
+LSTM Claude_GridSearch_forecast_plot_h1.png,LSTM model with Predicting One-Step Ahead with GridSearch
+LSTM Claude_GridSearch_forecast_plot_h2.png,LSTM model with Predicting Two-Step Ahead with GridSearch
+LSTM Claude_OPTUNATI_forecast_plot_h2.png,LSTM model with Predicting One-Step Ahead with Optuna
+LSTM Claude_OPTUNATI_forecast_plot_h1.png,LSTM model with Predicting Two-Step Ahead with Optuna
+LSTM GPT_forecast_plot_h1.png,LSTM 2nd model with Predicting One-Step Ahead with Optuna
+LSTM GPT_forecast_plot_h2.png,LSTM 2nd model with Predicting Two-Step Ahead with Optuna
+RNN Claude_error_analysis.png,
+RNN Claude_forecast_plot_h1.png,RNN model with Predicting One-Step Ahead
+RNN Claude_forecast_plot_h2.png,RNN model with Predicting Two-Step Ahead
+RNN Claude_forecast_plot_h12_combined.png,RNN model with Predicting Both Horizons
+RNN Claude_forecast1_plot_h12_combined.png,RNN 3nd model with Predicting Both Horizons
+RNN Claude1_error_analysis.png,
+RNN Claude1_forecast_plot_h1.png,RNN 3nd model with Predicting One-Step Ahead
+RNN Claude1_forecast_plot_h2.png,RNN 3nd model with Predicting Two-Step Ahead
+RNN GPT_forecast_plot_h1.png,RNN 2nd model with Predicting One-Step Ahead
+RNN GPT_forecast_plot_h2.png,RNN 2nd model with Predicting Two-Step Ahead
+Transformer claude_forecast_plot_h1.png,Transformer model with Predicting One-Step Ahead
+Transformer claude_forecast_plot_h2.png,Transformer model with Predicting Two-Step Ahead
+Transformer claude_weak_forecast_plot_h1.png,Transformer0 model with Predicting One-Step Ahead
+Transformer claude_weak_forecast_plot_h2.png,Transformer0 model with Predicting Two-Step Ahead
+Transformer GPT_forecast_plot_h1.png,Transformer 2nd model with Predicting One-Step Ahead
+Transformer GPT_forecast_plot_h2.png,Transformerm 2nd model with Predicting Two-Step Ahead
+VAE claude_forecast_combined.png,VAE model with Predicting Both Horizons
+VAE claude_forecast_h1.png,VAE model with Predicting One-Step Ahead
+VAE claude_forecast_h2.png,VAE model with Predicting Two-Step Ahead
+VAE claude_forecast_plot_horizon_1_1.png,VAE 0 model with Predicting One-Step Ahead
+VAE GPT_actual_vs_predicted_h1.png,VAE 2nd model with Predicting One-Step Ahead
+VAE GPT_actual_vs_predicted_h2.png,VAE 2nd model with Predicting Two-Step Ahead
+vae_forecast_results.png,VAE HVN
