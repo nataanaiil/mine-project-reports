@@ -5,17 +5,65 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>فهرست گزارش‌ها</title>
   <style>
-    body { font-family: sans-serif; margin: 24px; line-height: 1.8; }
-    .muted { color: #666; font-size: 0.95rem; }
-    ul { padding-right: 18px; }
-    li { margin: 8px 0; }
+    body {
+      font-family: sans-serif;
+      margin: 24px;
+      line-height: 2.0;
+      background: #fafafa;
+    }
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+    h1 { margin: 0 0 12px 0; }
+    h2 { margin-top: 32px; }
+    p { margin: 10px 0; }
+    .card {
+      background: #fff;
+      border: 1px solid #e3e3e3;
+      border-radius: 14px;
+      padding: 14px;
+      margin: 14px 0;
+    }
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      border: 1px solid #eee;
+      display: block;
+      margin-top: 10px;
+    }
+    .note {
+      color: #555;
+      font-size: 0.98rem;
+    }
+    .small {
+      color: #666;
+      font-size: 0.92rem;
+    }
+    a { color: #0b66c3; }
+    .warn {
+      background: #fff3cd;
+      border: 1px solid #ffeeba;
+      padding: 10px 12px;
+      border-radius: 12px;
+      margin: 12px 0;
+    }
+    code { direction:ltr; unicode-bidi: embed; }
   </style>
 </head>
 <body>
-  <h1>فهرست گزارش‌ها</h1>
-  <p class="muted">روی هر مورد کلیک کن تا گزارش همان فولدر باز شود.</p>
-  <ul>
-    <li><a href="outputs/airport_analysis_output/exp1/report.html">airport_analysis_output/exp1</a> <span class="muted">(19 تصویر)</span></li><li><a href="outputs/airport_analysis_output/exp2/report.html">airport_analysis_output/exp2</a> <span class="muted">(15 تصویر)</span></li><li><a href="outputs/airport_analysis_output/exp3/report.html">airport_analysis_output/exp3</a> <span class="muted">(33 تصویر)</span></li><li><a href="outputs/airport_analysis_output/exp4/report.html">airport_analysis_output/exp4</a> <span class="muted">(33 تصویر)</span></li><li><a href="outputs/airport_analysis_output/exp5/report.html">airport_analysis_output/exp5</a> <span class="muted">(33 تصویر)</span></li><li><a href="outputs/Modeling%20outputs/report.html">Modeling outputs</a> <span class="muted">(36 تصویر)</span></li>
-  </ul>
+  <div class="container">
+    <h1>فهرست گزارش‌ها</h1>
+<p class="note">روی هر عنوان کلیک کن تا گزارش مربوطه باز شود.</p>
+<ul>
+<li><a href="outputs/airport_analysis_output/exp1/report.html">Data Quality + Summary</a></li>
+<li><a href="outputs/airport_analysis_output/exp2/report.html">Overall Paterns</a></li>
+<li><a href="outputs/airport_analysis_output/exp3/report.html">top routes daily</a></li>
+<li><a href="outputs/airport_analysis_output/exp4/report.html">top routes Weekly</a></li>
+<li><a href="outputs/airport_analysis_output/exp5/report.html">top routes Monthly</a></li>
+<li><a href="outputs/Modeling%20outputs/report.html">Modeling Outputs (VAE, Transformers,...)</a></li>
+</ul>
+  </div>
 </body>
 </html>
