@@ -3,214 +3,238 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Report - Modeling outputs</title>
+  <title>Modeling Outputs (VAE, Transformers,...)</title>
   <style>
-    body { font-family: sans-serif; margin: 24px; line-height: 1.8; }
-    header { margin-bottom: 16px; }
-    .muted { color: #666; font-size: 0.95rem; }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 16px;
+    body {
+      font-family: sans-serif;
+      margin: 24px;
+      line-height: 2.0;
+      background: #fafafa;
     }
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+    h1 { margin: 0 0 12px 0; }
+    h2 { margin-top: 32px; }
+    p { margin: 10px 0; }
     .card {
-      border: 1px solid #ddd;
-      border-radius: 12px;
-      padding: 12px;
       background: #fff;
+      border: 1px solid #e3e3e3;
+      border-radius: 14px;
+      padding: 14px;
+      margin: 14px 0;
     }
-    img { width: 100%; height: auto; border-radius: 10px; }
-    figcaption { margin-top: 10px; color: #333; font-size: 0.95rem; min-height: 1.2em; }
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      border: 1px solid #eee;
+      display: block;
+      margin-top: 10px;
+    }
+    .note {
+      color: #555;
+      font-size: 0.98rem;
+    }
+    .small {
+      color: #666;
+      font-size: 0.92rem;
+    }
+    a { color: #0b66c3; }
+    .warn {
+      background: #fff3cd;
+      border: 1px solid #ffeeba;
+      padding: 10px 12px;
+      border-radius: 12px;
+      margin: 12px 0;
+    }
+    code { direction:ltr; unicode-bidi: embed; }
   </style>
 </head>
 <body>
-  <header>
-    <h1>گزارش: Modeling outputs</h1>
-    <p class="muted">تعداد تصاویر: 36</p>
-  </header>
-
-  <main class="grid">
-    <figure class="card">
-              <a href="ARIMA%20Claude_actual_vs_predicted_h1.png" target="_blank" rel="noopener">
-                <img src="ARIMA%20Claude_actual_vs_predicted_h1.png" alt="ARIMA Claude_actual_vs_predicted_h1.png">
-              </a>
-              <figcaption>ARIMA model with Predicting One-Step Ahead</figcaption>
-            </figure><figure class="card">
-              <a href="ARIMA%20Claude_actual_vs_predicted_h12_combined.png" target="_blank" rel="noopener">
-                <img src="ARIMA%20Claude_actual_vs_predicted_h12_combined.png" alt="ARIMA Claude_actual_vs_predicted_h12_combined.png">
-              </a>
-              <figcaption>ARIMA model with Predicting Both Horizons</figcaption>
-            </figure><figure class="card">
-              <a href="ARIMA%20Claude_actual_vs_predicted_h2.png" target="_blank" rel="noopener">
-                <img src="ARIMA%20Claude_actual_vs_predicted_h2.png" alt="ARIMA Claude_actual_vs_predicted_h2.png">
-              </a>
-              <figcaption>ARIMA model with Predicting Two-Step Ahead</figcaption>
-            </figure><figure class="card">
-              <a href="ARIMA%20Claude_error_distribution.png" target="_blank" rel="noopener">
-                <img src="ARIMA%20Claude_error_distribution.png" alt="ARIMA Claude_error_distribution.png">
-              </a>
-              <figcaption></figcaption>
-            </figure><figure class="card">
-              <a href="ARIMA%20Claude_metrics_comparison.png" target="_blank" rel="noopener">
-                <img src="ARIMA%20Claude_metrics_comparison.png" alt="ARIMA Claude_metrics_comparison.png">
-              </a>
-              <figcaption></figcaption>
-            </figure><figure class="card">
-              <a href="ARIMA%20GPT_actual_vs_predicted_h1.png" target="_blank" rel="noopener">
-                <img src="ARIMA%20GPT_actual_vs_predicted_h1.png" alt="ARIMA GPT_actual_vs_predicted_h1.png">
-              </a>
-              <figcaption>ARIMA 2nd model with Predicting One-Step Ahead</figcaption>
-            </figure><figure class="card">
-              <a href="ARIMA%20GPT_actual_vs_predicted_h2.png" target="_blank" rel="noopener">
-                <img src="ARIMA%20GPT_actual_vs_predicted_h2.png" alt="ARIMA GPT_actual_vs_predicted_h2.png">
-              </a>
-              <figcaption>ARIMA 2nd model with Predicting Two-Step Ahead</figcaption>
-            </figure><figure class="card">
-              <a href="LSTM%20Claude_GridSearch_forecast_plot_h1.png" target="_blank" rel="noopener">
-                <img src="LSTM%20Claude_GridSearch_forecast_plot_h1.png" alt="LSTM Claude_GridSearch_forecast_plot_h1.png">
-              </a>
-              <figcaption>LSTM model with Predicting One-Step Ahead with GridSearch</figcaption>
-            </figure><figure class="card">
-              <a href="LSTM%20Claude_GridSearch_forecast_plot_h2.png" target="_blank" rel="noopener">
-                <img src="LSTM%20Claude_GridSearch_forecast_plot_h2.png" alt="LSTM Claude_GridSearch_forecast_plot_h2.png">
-              </a>
-              <figcaption>LSTM model with Predicting Two-Step Ahead with GridSearch</figcaption>
-            </figure><figure class="card">
-              <a href="LSTM%20Claude_OPTUNATI__forecast_plot_h2.png" target="_blank" rel="noopener">
-                <img src="LSTM%20Claude_OPTUNATI__forecast_plot_h2.png" alt="LSTM Claude_OPTUNATI__forecast_plot_h2.png">
-              </a>
-              <figcaption></figcaption>
-            </figure><figure class="card">
-              <a href="LSTM%20Claude_OPTUNATI_forecast_plot_h1.png" target="_blank" rel="noopener">
-                <img src="LSTM%20Claude_OPTUNATI_forecast_plot_h1.png" alt="LSTM Claude_OPTUNATI_forecast_plot_h1.png">
-              </a>
-              <figcaption>LSTM model with Predicting Two-Step Ahead with Optuna</figcaption>
-            </figure><figure class="card">
-              <a href="LSTM%20GPT_forecast_plot_h1.png" target="_blank" rel="noopener">
-                <img src="LSTM%20GPT_forecast_plot_h1.png" alt="LSTM GPT_forecast_plot_h1.png">
-              </a>
-              <figcaption>LSTM 2nd model with Predicting One-Step Ahead with Optuna</figcaption>
-            </figure><figure class="card">
-              <a href="LSTM%20GPT_forecast_plot_h2.png" target="_blank" rel="noopener">
-                <img src="LSTM%20GPT_forecast_plot_h2.png" alt="LSTM GPT_forecast_plot_h2.png">
-              </a>
-              <figcaption>LSTM 2nd model with Predicting Two-Step Ahead with Optuna</figcaption>
-            </figure><figure class="card">
-              <a href="RNN%20Claude1_error_analysis.png" target="_blank" rel="noopener">
-                <img src="RNN%20Claude1_error_analysis.png" alt="RNN Claude1_error_analysis.png">
-              </a>
-              <figcaption></figcaption>
-            </figure><figure class="card">
-              <a href="RNN%20Claude1_forecast_plot_h1.png" target="_blank" rel="noopener">
-                <img src="RNN%20Claude1_forecast_plot_h1.png" alt="RNN Claude1_forecast_plot_h1.png">
-              </a>
-              <figcaption>RNN 3nd model with Predicting One-Step Ahead</figcaption>
-            </figure><figure class="card">
-              <a href="RNN%20Claude1_forecast_plot_h2.png" target="_blank" rel="noopener">
-                <img src="RNN%20Claude1_forecast_plot_h2.png" alt="RNN Claude1_forecast_plot_h2.png">
-              </a>
-              <figcaption>RNN 3nd model with Predicting Two-Step Ahead</figcaption>
-            </figure><figure class="card">
-              <a href="RNN%20Claude_error_analysis.png" target="_blank" rel="noopener">
-                <img src="RNN%20Claude_error_analysis.png" alt="RNN Claude_error_analysis.png">
-              </a>
-              <figcaption></figcaption>
-            </figure><figure class="card">
-              <a href="RNN%20Claude_forecast1_plot_h12_combined.png" target="_blank" rel="noopener">
-                <img src="RNN%20Claude_forecast1_plot_h12_combined.png" alt="RNN Claude_forecast1_plot_h12_combined.png">
-              </a>
-              <figcaption>RNN 3nd model with Predicting Both Horizons</figcaption>
-            </figure><figure class="card">
-              <a href="RNN%20Claude_forecast_plot_h1.png" target="_blank" rel="noopener">
-                <img src="RNN%20Claude_forecast_plot_h1.png" alt="RNN Claude_forecast_plot_h1.png">
-              </a>
-              <figcaption>RNN model with Predicting One-Step Ahead</figcaption>
-            </figure><figure class="card">
-              <a href="RNN%20Claude_forecast_plot_h12_combined.png" target="_blank" rel="noopener">
-                <img src="RNN%20Claude_forecast_plot_h12_combined.png" alt="RNN Claude_forecast_plot_h12_combined.png">
-              </a>
-              <figcaption>RNN model with Predicting Both Horizons</figcaption>
-            </figure><figure class="card">
-              <a href="RNN%20Claude_forecast_plot_h2.png" target="_blank" rel="noopener">
-                <img src="RNN%20Claude_forecast_plot_h2.png" alt="RNN Claude_forecast_plot_h2.png">
-              </a>
-              <figcaption>RNN model with Predicting Two-Step Ahead</figcaption>
-            </figure><figure class="card">
-              <a href="RNN%20GPT_forecast_plot_h1.png" target="_blank" rel="noopener">
-                <img src="RNN%20GPT_forecast_plot_h1.png" alt="RNN GPT_forecast_plot_h1.png">
-              </a>
-              <figcaption>RNN 2nd model with Predicting One-Step Ahead</figcaption>
-            </figure><figure class="card">
-              <a href="RNN%20GPT_forecast_plot_h2.png" target="_blank" rel="noopener">
-                <img src="RNN%20GPT_forecast_plot_h2.png" alt="RNN GPT_forecast_plot_h2.png">
-              </a>
-              <figcaption>RNN 2nd model with Predicting Two-Step Ahead</figcaption>
-            </figure><figure class="card">
-              <a href="Transformer%20claude_forecast_plot_h1.png" target="_blank" rel="noopener">
-                <img src="Transformer%20claude_forecast_plot_h1.png" alt="Transformer claude_forecast_plot_h1.png">
-              </a>
-              <figcaption>Transformer model with Predicting One-Step Ahead</figcaption>
-            </figure><figure class="card">
-              <a href="Transformer%20claude_forecast_plot_h2.png" target="_blank" rel="noopener">
-                <img src="Transformer%20claude_forecast_plot_h2.png" alt="Transformer claude_forecast_plot_h2.png">
-              </a>
-              <figcaption>Transformer model with Predicting Two-Step Ahead</figcaption>
-            </figure><figure class="card">
-              <a href="Transformer%20claude_weak_forecast_plot_h1.png" target="_blank" rel="noopener">
-                <img src="Transformer%20claude_weak_forecast_plot_h1.png" alt="Transformer claude_weak_forecast_plot_h1.png">
-              </a>
-              <figcaption>Transformer0 model with Predicting One-Step Ahead</figcaption>
-            </figure><figure class="card">
-              <a href="Transformer%20claude_weak_forecast_plot_h2.png" target="_blank" rel="noopener">
-                <img src="Transformer%20claude_weak_forecast_plot_h2.png" alt="Transformer claude_weak_forecast_plot_h2.png">
-              </a>
-              <figcaption>Transformer0 model with Predicting Two-Step Ahead</figcaption>
-            </figure><figure class="card">
-              <a href="Transformer%20GPT_forecast_plot_h1.png" target="_blank" rel="noopener">
-                <img src="Transformer%20GPT_forecast_plot_h1.png" alt="Transformer GPT_forecast_plot_h1.png">
-              </a>
-              <figcaption>Transformer 2nd model with Predicting One-Step Ahead</figcaption>
-            </figure><figure class="card">
-              <a href="Transformer%20GPT_forecast_plot_h2.png" target="_blank" rel="noopener">
-                <img src="Transformer%20GPT_forecast_plot_h2.png" alt="Transformer GPT_forecast_plot_h2.png">
-              </a>
-              <figcaption>Transformerm 2nd model with Predicting Two-Step Ahead</figcaption>
-            </figure><figure class="card">
-              <a href="VAE%20claude_forecast_combined.png" target="_blank" rel="noopener">
-                <img src="VAE%20claude_forecast_combined.png" alt="VAE claude_forecast_combined.png">
-              </a>
-              <figcaption>VAE model with Predicting Both Horizons</figcaption>
-            </figure><figure class="card">
-              <a href="VAE%20claude_forecast_h1.png" target="_blank" rel="noopener">
-                <img src="VAE%20claude_forecast_h1.png" alt="VAE claude_forecast_h1.png">
-              </a>
-              <figcaption>VAE model with Predicting One-Step Ahead</figcaption>
-            </figure><figure class="card">
-              <a href="VAE%20claude_forecast_h2.png" target="_blank" rel="noopener">
-                <img src="VAE%20claude_forecast_h2.png" alt="VAE claude_forecast_h2.png">
-              </a>
-              <figcaption>VAE model with Predicting Two-Step Ahead</figcaption>
-            </figure><figure class="card">
-              <a href="VAE%20claude_forecast_plot_horizon_1_1.png" target="_blank" rel="noopener">
-                <img src="VAE%20claude_forecast_plot_horizon_1_1.png" alt="VAE claude_forecast_plot_horizon_1_1.png">
-              </a>
-              <figcaption>VAE 0 model with Predicting One-Step Ahead</figcaption>
-            </figure><figure class="card">
-              <a href="VAE%20GPT_actual_vs_predicted_h1.png" target="_blank" rel="noopener">
-                <img src="VAE%20GPT_actual_vs_predicted_h1.png" alt="VAE GPT_actual_vs_predicted_h1.png">
-              </a>
-              <figcaption>VAE 2nd model with Predicting One-Step Ahead</figcaption>
-            </figure><figure class="card">
-              <a href="VAE%20GPT_actual_vs_predicted_h2.png" target="_blank" rel="noopener">
-                <img src="VAE%20GPT_actual_vs_predicted_h2.png" alt="VAE GPT_actual_vs_predicted_h2.png">
-              </a>
-              <figcaption>VAE 2nd model with Predicting Two-Step Ahead</figcaption>
-            </figure><figure class="card">
-              <a href="vae_forecast_results.png" target="_blank" rel="noopener">
-                <img src="vae_forecast_results.png" alt="vae_forecast_results.png">
-              </a>
-              <figcaption>VAE HVN</figcaption>
-            </figure>
-  </main>
+  <div class="container">
+    <h1>Modeling Outputs (VAE, Transformers,...)</h1>
+<p class="note">مدل های متنوعی هر کدام حداقل 2 بار پیاده سازی شده است که به شرح زیر می باشد:</p>
+<div class="card">
+  <p>ARIMA model with Predicting One-Step Ahead</p>
+  <img src="ARIMA%20Claude_actual_vs_predicted_h1.png" alt="ARIMA Claude_actual_vs_predicted_h1.png">
+  <p class="small"><code>ARIMA Claude_actual_vs_predicted_h1.png</code></p>
+</div>
+<div class="card">
+  <p>ARIMA model with Predicting Two-Step Ahead</p>
+  <img src="ARIMA%20Claude_actual_vs_predicted_h2.png" alt="ARIMA Claude_actual_vs_predicted_h2.png">
+  <p class="small"><code>ARIMA Claude_actual_vs_predicted_h2.png</code></p>
+</div>
+<div class="card">
+  <p>ARIMA model with Predicting Both Horizons</p>
+  <img src="ARIMA%20Claude_actual_vs_predicted_h12_combined.png" alt="ARIMA Claude_actual_vs_predicted_h12_combined.png">
+  <p class="small"><code>ARIMA Claude_actual_vs_predicted_h12_combined.png</code></p>
+</div>
+<div class="card">
+  <p>ARIMA Claude_error_distribution.png</p>
+  <img src="ARIMA%20Claude_error_distribution.png" alt="ARIMA Claude_error_distribution.png">
+  <p class="small"><code>ARIMA Claude_error_distribution.png</code></p>
+</div>
+<div class="card">
+  <p>ARIMA Claude_metrics_comparison.png</p>
+  <img src="ARIMA%20Claude_metrics_comparison.png" alt="ARIMA Claude_metrics_comparison.png">
+  <p class="small"><code>ARIMA Claude_metrics_comparison.png</code></p>
+</div>
+<div class="card">
+  <p>ARIMA 2nd model with Predicting One-Step Ahead</p>
+  <img src="ARIMA%20GPT_actual_vs_predicted_h1.png" alt="ARIMA GPT_actual_vs_predicted_h1.png">
+  <p class="small"><code>ARIMA GPT_actual_vs_predicted_h1.png</code></p>
+</div>
+<div class="card">
+  <p>ARIMA 2nd model with Predicting Two-Step Ahead</p>
+  <img src="ARIMA%20GPT_actual_vs_predicted_h2.png" alt="ARIMA GPT_actual_vs_predicted_h2.png">
+  <p class="small"><code>ARIMA GPT_actual_vs_predicted_h2.png</code></p>
+</div>
+<div class="card">
+  <p>LSTM model with Predicting One-Step Ahead with GridSearch</p>
+  <img src="LSTM%20Claude_GridSearch_forecast_plot_h1.png" alt="LSTM Claude_GridSearch_forecast_plot_h1.png">
+  <p class="small"><code>LSTM Claude_GridSearch_forecast_plot_h1.png</code></p>
+</div>
+<div class="card">
+  <p>LSTM model with Predicting Two-Step Ahead with GridSearch</p>
+  <img src="LSTM%20Claude_GridSearch_forecast_plot_h2.png" alt="LSTM Claude_GridSearch_forecast_plot_h2.png">
+  <p class="small"><code>LSTM Claude_GridSearch_forecast_plot_h2.png</code></p>
+</div>
+<div class="card">
+  <p>LSTM model with Predicting One-Step Ahead with Optuna</p>
+  <div class="warn"><b>هشدار:</b> تصویر پیدا نشد.</div>
+</div>
+<div class="card">
+  <p>LSTM model with Predicting Two-Step Ahead with Optuna</p>
+  <img src="LSTM%20Claude_OPTUNATI_forecast_plot_h1.png" alt="LSTM Claude_OPTUNATI_forecast_plot_h1.png">
+  <p class="small"><code>LSTM Claude_OPTUNATI_forecast_plot_h1.png</code></p>
+</div>
+<div class="card">
+  <p>LSTM 2nd model with Predicting One-Step Ahead with Optuna</p>
+  <img src="LSTM%20GPT_forecast_plot_h1.png" alt="LSTM GPT_forecast_plot_h1.png">
+  <p class="small"><code>LSTM GPT_forecast_plot_h1.png</code></p>
+</div>
+<div class="card">
+  <p>LSTM 2nd model with Predicting Two-Step Ahead with Optuna</p>
+  <img src="LSTM%20GPT_forecast_plot_h2.png" alt="LSTM GPT_forecast_plot_h2.png">
+  <p class="small"><code>LSTM GPT_forecast_plot_h2.png</code></p>
+</div>
+<div class="card">
+  <p>RNN Claude_error_analysis.png</p>
+  <img src="RNN%20Claude_error_analysis.png" alt="RNN Claude_error_analysis.png">
+  <p class="small"><code>RNN Claude_error_analysis.png</code></p>
+</div>
+<div class="card">
+  <p>RNN model with Predicting One-Step Ahead</p>
+  <img src="RNN%20Claude_forecast_plot_h1.png" alt="RNN Claude_forecast_plot_h1.png">
+  <p class="small"><code>RNN Claude_forecast_plot_h1.png</code></p>
+</div>
+<div class="card">
+  <p>RNN model with Predicting Two-Step Ahead</p>
+  <img src="RNN%20Claude_forecast_plot_h2.png" alt="RNN Claude_forecast_plot_h2.png">
+  <p class="small"><code>RNN Claude_forecast_plot_h2.png</code></p>
+</div>
+<div class="card">
+  <p>RNN model with Predicting Both Horizons</p>
+  <img src="RNN%20Claude_forecast_plot_h12_combined.png" alt="RNN Claude_forecast_plot_h12_combined.png">
+  <p class="small"><code>RNN Claude_forecast_plot_h12_combined.png</code></p>
+</div>
+<div class="card">
+  <p>RNN 3nd model with Predicting Both Horizons</p>
+  <img src="RNN%20Claude_forecast1_plot_h12_combined.png" alt="RNN Claude_forecast1_plot_h12_combined.png">
+  <p class="small"><code>RNN Claude_forecast1_plot_h12_combined.png</code></p>
+</div>
+<div class="card">
+  <p>RNN Claude1_error_analysis.png</p>
+  <img src="RNN%20Claude1_error_analysis.png" alt="RNN Claude1_error_analysis.png">
+  <p class="small"><code>RNN Claude1_error_analysis.png</code></p>
+</div>
+<div class="card">
+  <p>RNN 3nd model with Predicting One-Step Ahead</p>
+  <img src="RNN%20Claude1_forecast_plot_h1.png" alt="RNN Claude1_forecast_plot_h1.png">
+  <p class="small"><code>RNN Claude1_forecast_plot_h1.png</code></p>
+</div>
+<div class="card">
+  <p>RNN 3nd model with Predicting Two-Step Ahead</p>
+  <img src="RNN%20Claude1_forecast_plot_h2.png" alt="RNN Claude1_forecast_plot_h2.png">
+  <p class="small"><code>RNN Claude1_forecast_plot_h2.png</code></p>
+</div>
+<div class="card">
+  <p>RNN 2nd model with Predicting One-Step Ahead</p>
+  <img src="RNN%20GPT_forecast_plot_h1.png" alt="RNN GPT_forecast_plot_h1.png">
+  <p class="small"><code>RNN GPT_forecast_plot_h1.png</code></p>
+</div>
+<div class="card">
+  <p>RNN 2nd model with Predicting Two-Step Ahead</p>
+  <img src="RNN%20GPT_forecast_plot_h2.png" alt="RNN GPT_forecast_plot_h2.png">
+  <p class="small"><code>RNN GPT_forecast_plot_h2.png</code></p>
+</div>
+<div class="card">
+  <p>Transformer model with Predicting One-Step Ahead</p>
+  <img src="Transformer%20claude_forecast_plot_h1.png" alt="Transformer claude_forecast_plot_h1.png">
+  <p class="small"><code>Transformer claude_forecast_plot_h1.png</code></p>
+</div>
+<div class="card">
+  <p>Transformer model with Predicting Two-Step Ahead</p>
+  <img src="Transformer%20claude_forecast_plot_h2.png" alt="Transformer claude_forecast_plot_h2.png">
+  <p class="small"><code>Transformer claude_forecast_plot_h2.png</code></p>
+</div>
+<div class="card">
+  <p>Transformer0 model with Predicting One-Step Ahead</p>
+  <img src="Transformer%20claude_weak_forecast_plot_h1.png" alt="Transformer claude_weak_forecast_plot_h1.png">
+  <p class="small"><code>Transformer claude_weak_forecast_plot_h1.png</code></p>
+</div>
+<div class="card">
+  <p>Transformer0 model with Predicting Two-Step Ahead</p>
+  <img src="Transformer%20claude_weak_forecast_plot_h2.png" alt="Transformer claude_weak_forecast_plot_h2.png">
+  <p class="small"><code>Transformer claude_weak_forecast_plot_h2.png</code></p>
+</div>
+<div class="card">
+  <p>Transformer 2nd model with Predicting One-Step Ahead</p>
+  <img src="Transformer%20GPT_forecast_plot_h1.png" alt="Transformer GPT_forecast_plot_h1.png">
+  <p class="small"><code>Transformer GPT_forecast_plot_h1.png</code></p>
+</div>
+<div class="card">
+  <p>Transformerm 2nd model with Predicting Two-Step Ahead</p>
+  <img src="Transformer%20GPT_forecast_plot_h2.png" alt="Transformer GPT_forecast_plot_h2.png">
+  <p class="small"><code>Transformer GPT_forecast_plot_h2.png</code></p>
+</div>
+<div class="card">
+  <p>VAE model with Predicting Both Horizons</p>
+  <img src="VAE%20claude_forecast_combined.png" alt="VAE claude_forecast_combined.png">
+  <p class="small"><code>VAE claude_forecast_combined.png</code></p>
+</div>
+<div class="card">
+  <p>VAE model with Predicting One-Step Ahead</p>
+  <img src="VAE%20claude_forecast_h1.png" alt="VAE claude_forecast_h1.png">
+  <p class="small"><code>VAE claude_forecast_h1.png</code></p>
+</div>
+<div class="card">
+  <p>VAE model with Predicting Two-Step Ahead</p>
+  <img src="VAE%20claude_forecast_h2.png" alt="VAE claude_forecast_h2.png">
+  <p class="small"><code>VAE claude_forecast_h2.png</code></p>
+</div>
+<div class="card">
+  <p>VAE 0 model with Predicting One-Step Ahead</p>
+  <img src="VAE%20claude_forecast_plot_horizon_1_1.png" alt="VAE claude_forecast_plot_horizon_1_1.png">
+  <p class="small"><code>VAE claude_forecast_plot_horizon_1_1.png</code></p>
+</div>
+<div class="card">
+  <p>VAE 2nd model with Predicting One-Step Ahead</p>
+  <img src="VAE%20GPT_actual_vs_predicted_h1.png" alt="VAE GPT_actual_vs_predicted_h1.png">
+  <p class="small"><code>VAE GPT_actual_vs_predicted_h1.png</code></p>
+</div>
+<div class="card">
+  <p>VAE 2nd model with Predicting Two-Step Ahead</p>
+  <img src="VAE%20GPT_actual_vs_predicted_h2.png" alt="VAE GPT_actual_vs_predicted_h2.png">
+  <p class="small"><code>VAE GPT_actual_vs_predicted_h2.png</code></p>
+</div>
+<div class="card">
+  <p>VAE HVN</p>
+  <img src="vae_forecast_results.png" alt="vae_forecast_results.png">
+  <p class="small"><code>vae_forecast_results.png</code></p>
+</div>
+  </div>
 </body>
 </html>

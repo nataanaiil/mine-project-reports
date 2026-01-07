@@ -3,129 +3,142 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Report - exp1</title>
+  <title>Data Quality + Summary</title>
   <style>
-    body { font-family: sans-serif; margin: 24px; line-height: 1.8; }
-    header { margin-bottom: 16px; }
-    .muted { color: #666; font-size: 0.95rem; }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 16px;
+    body {
+      font-family: sans-serif;
+      margin: 24px;
+      line-height: 2.0;
+      background: #fafafa;
     }
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+    h1 { margin: 0 0 12px 0; }
+    h2 { margin-top: 32px; }
+    p { margin: 10px 0; }
     .card {
-      border: 1px solid #ddd;
-      border-radius: 12px;
-      padding: 12px;
       background: #fff;
+      border: 1px solid #e3e3e3;
+      border-radius: 14px;
+      padding: 14px;
+      margin: 14px 0;
     }
-    img { width: 100%; height: auto; border-radius: 10px; }
-    figcaption { margin-top: 10px; color: #333; font-size: 0.95rem; min-height: 1.2em; }
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      border: 1px solid #eee;
+      display: block;
+      margin-top: 10px;
+    }
+    .note {
+      color: #555;
+      font-size: 0.98rem;
+    }
+    .small {
+      color: #666;
+      font-size: 0.92rem;
+    }
+    a { color: #0b66c3; }
+    .warn {
+      background: #fff3cd;
+      border: 1px solid #ffeeba;
+      padding: 10px 12px;
+      border-radius: 12px;
+      margin: 12px 0;
+    }
+    code { direction:ltr; unicode-bidi: embed; }
   </style>
 </head>
 <body>
-  <header>
-    <h1>گزارش: exp1</h1>
-    <p class="muted">تعداد تصاویر: 19</p>
-  </header>
-
-  <main class="grid">
-    <figure class="card">
-              <a href="Abadan_monthly_coverage.png" target="_blank" rel="noopener">
-                <img src="Abadan_monthly_coverage.png" alt="Abadan_monthly_coverage.png">
-              </a>
-              <figcaption></figcaption>
-            </figure><figure class="card">
-              <a href="Abadan_route_heatmap_part1.png" target="_blank" rel="noopener">
-                <img src="Abadan_route_heatmap_part1.png" alt="Abadan_route_heatmap_part1.png">
-              </a>
-              <figcaption></figcaption>
-            </figure><figure class="card">
-              <a href="Abadan_route_heatmap_part2.png" target="_blank" rel="noopener">
-                <img src="Abadan_route_heatmap_part2.png" alt="Abadan_route_heatmap_part2.png">
-              </a>
-              <figcaption></figcaption>
-            </figure><figure class="card">
-              <a href="Abadan_summary.png" target="_blank" rel="noopener">
-                <img src="Abadan_summary.png" alt="Abadan_summary.png">
-              </a>
-              <figcaption></figcaption>
-            </figure><figure class="card">
-              <a href="Abadan_temporal_coverage.png" target="_blank" rel="noopener">
-                <img src="Abadan_temporal_coverage.png" alt="Abadan_temporal_coverage.png">
-              </a>
-              <figcaption></figcaption>
-            </figure><figure class="card">
-              <a href="Esfahan_monthly_coverage.png" target="_blank" rel="noopener">
-                <img src="Esfahan_monthly_coverage.png" alt="Esfahan_monthly_coverage.png">
-              </a>
-              <figcaption></figcaption>
-            </figure><figure class="card">
-              <a href="Esfahan_route_heatmap_part1.png" target="_blank" rel="noopener">
-                <img src="Esfahan_route_heatmap_part1.png" alt="Esfahan_route_heatmap_part1.png">
-              </a>
-              <figcaption></figcaption>
-            </figure><figure class="card">
-              <a href="Esfahan_route_heatmap_part2.png" target="_blank" rel="noopener">
-                <img src="Esfahan_route_heatmap_part2.png" alt="Esfahan_route_heatmap_part2.png">
-              </a>
-              <figcaption></figcaption>
-            </figure><figure class="card">
-              <a href="Esfahan_route_heatmap_part3.png" target="_blank" rel="noopener">
-                <img src="Esfahan_route_heatmap_part3.png" alt="Esfahan_route_heatmap_part3.png">
-              </a>
-              <figcaption></figcaption>
-            </figure><figure class="card">
-              <a href="Esfahan_route_heatmap_part4.png" target="_blank" rel="noopener">
-                <img src="Esfahan_route_heatmap_part4.png" alt="Esfahan_route_heatmap_part4.png">
-              </a>
-              <figcaption></figcaption>
-            </figure><figure class="card">
-              <a href="Esfahan_summary.png" target="_blank" rel="noopener">
-                <img src="Esfahan_summary.png" alt="Esfahan_summary.png">
-              </a>
-              <figcaption></figcaption>
-            </figure><figure class="card">
-              <a href="Esfahan_temporal_coverage.png" target="_blank" rel="noopener">
-                <img src="Esfahan_temporal_coverage.png" alt="Esfahan_temporal_coverage.png">
-              </a>
-              <figcaption></figcaption>
-            </figure><figure class="card">
-              <a href="Tabriz_monthly_coverage.png" target="_blank" rel="noopener">
-                <img src="Tabriz_monthly_coverage.png" alt="Tabriz_monthly_coverage.png">
-              </a>
-              <figcaption></figcaption>
-            </figure><figure class="card">
-              <a href="Tabriz_route_heatmap_part1.png" target="_blank" rel="noopener">
-                <img src="Tabriz_route_heatmap_part1.png" alt="Tabriz_route_heatmap_part1.png">
-              </a>
-              <figcaption></figcaption>
-            </figure><figure class="card">
-              <a href="Tabriz_route_heatmap_part2.png" target="_blank" rel="noopener">
-                <img src="Tabriz_route_heatmap_part2.png" alt="Tabriz_route_heatmap_part2.png">
-              </a>
-              <figcaption></figcaption>
-            </figure><figure class="card">
-              <a href="Tabriz_route_heatmap_part3.png" target="_blank" rel="noopener">
-                <img src="Tabriz_route_heatmap_part3.png" alt="Tabriz_route_heatmap_part3.png">
-              </a>
-              <figcaption></figcaption>
-            </figure><figure class="card">
-              <a href="Tabriz_route_heatmap_part4.png" target="_blank" rel="noopener">
-                <img src="Tabriz_route_heatmap_part4.png" alt="Tabriz_route_heatmap_part4.png">
-              </a>
-              <figcaption></figcaption>
-            </figure><figure class="card">
-              <a href="Tabriz_summary.png" target="_blank" rel="noopener">
-                <img src="Tabriz_summary.png" alt="Tabriz_summary.png">
-              </a>
-              <figcaption></figcaption>
-            </figure><figure class="card">
-              <a href="Tabriz_temporal_coverage.png" target="_blank" rel="noopener">
-                <img src="Tabriz_temporal_coverage.png" alt="Tabriz_temporal_coverage.png">
-              </a>
-              <figcaption></figcaption>
-            </figure>
-  </main>
+  <div class="container">
+    <h1>Data Quality + Summary</h1>
+<p class="note">در این قسمت، نمودارها نشان می‌دهند که بین تمام مبدا مقصد های مختلف چه میزان دیتا موجود هست، تا یا یک دید کلی از مبدا مقصدهایی که میتوانند گزینه های مناسب مدلسازی باشن آشنا شویم، هرچه نمودار سبز تر باشد یه معنای وجود دیتای بیشتری هست.</p>
+<div class="card"><p>نمودار فرودگاه آبادان:</p></div>
+<div class="card">
+  <p>نمودار فرودگاه آبادان بخش اول:</p>
+  <img src="Abadan_route_heatmap_part1.png" alt="Abadan_route_heatmap_part1.png">
+  <p class="small"><code>Abadan_route_heatmap_part1.png</code></p>
+</div>
+<div class="card">
+  <p>نمودار فرودگاه آبادان بخش دوم:</p>
+  <img src="Abadan_route_heatmap_part2.png" alt="Abadan_route_heatmap_part2.png">
+  <p class="small"><code>Abadan_route_heatmap_part2.png</code></p>
+</div>
+<div class="card">
+  <p>نمودار زیر تعداد پرواز در هر روز در فرودگاه آبادان را مشخص می کند همچنین نشان میدهد که چه تعداد روز از این فرودگاه هیچ دیتایی نداریم:</p>
+  <img src="Abadan_temporal_coverage.png" alt="Abadan_temporal_coverage.png">
+  <p class="small"><code>Abadan_temporal_coverage.png</code></p>
+</div>
+<div class="card">
+  <p>خلاصه ای از  وضعیت داده های آبادان:</p>
+  <img src="Abadan_summary.png" alt="Abadan_summary.png">
+  <p class="small"><code>Abadan_summary.png</code></p>
+</div>
+<div class="card"><p>نمودار فرودگاه اصفهان:</p></div>
+<div class="card">
+  <p>نمودار فرودگاه اصفهان بخش اول:</p>
+  <img src="Esfahan_route_heatmap_part1.png" alt="Esfahan_route_heatmap_part1.png">
+  <p class="small"><code>Esfahan_route_heatmap_part1.png</code></p>
+</div>
+<div class="card">
+  <p>نمودار فرودگاه اصفهان بخش دوم:</p>
+  <img src="Esfahan_route_heatmap_part2.png" alt="Esfahan_route_heatmap_part2.png">
+  <p class="small"><code>Esfahan_route_heatmap_part2.png</code></p>
+</div>
+<div class="card">
+  <p>نمودار فرودگاه اصفهان بخش سوم:</p>
+  <img src="Esfahan_route_heatmap_part3.png" alt="Esfahan_route_heatmap_part3.png">
+  <p class="small"><code>Esfahan_route_heatmap_part3.png</code></p>
+</div>
+<div class="card">
+  <p>نمودار فرودگاه اصفهان بخش چهارم:</p>
+  <img src="Esfahan_route_heatmap_part4.png" alt="Esfahan_route_heatmap_part4.png">
+  <p class="small"><code>Esfahan_route_heatmap_part4.png</code></p>
+</div>
+<div class="card">
+  <p>نمودار زیر تعداد پرواز در هر روز در فرودگاه اصفهان را مشخص می کند همچنین نشان میدهد که چه تعداد روز از این فرودگاه هیچ دیتایی نداریم:</p>
+  <img src="Esfahan_temporal_coverage.png" alt="Esfahan_temporal_coverage.png">
+  <p class="small"><code>Esfahan_temporal_coverage.png</code></p>
+</div>
+<div class="card">
+  <p>خلاصه ای از  وضعیت داده های اصفهان :</p>
+  <img src="Esfahan_summary.png" alt="Esfahan_summary.png">
+  <p class="small"><code>Esfahan_summary.png</code></p>
+</div>
+<div class="card"><p>نمودار فرودگاه تبریز:</p></div>
+<div class="card">
+  <p>نمودار فرودگاه تبریز بخش اول:</p>
+  <img src="Tabriz_route_heatmap_part1.png" alt="Tabriz_route_heatmap_part1.png">
+  <p class="small"><code>Tabriz_route_heatmap_part1.png</code></p>
+</div>
+<div class="card">
+  <p>نمودار فرودگاه تبریز بخش دوم:</p>
+  <img src="Tabriz_route_heatmap_part2.png" alt="Tabriz_route_heatmap_part2.png">
+  <p class="small"><code>Tabriz_route_heatmap_part2.png</code></p>
+</div>
+<div class="card">
+  <p>نمودار فرودگاه تبریز بخش سوم:</p>
+  <img src="Tabriz_route_heatmap_part3.png" alt="Tabriz_route_heatmap_part3.png">
+  <p class="small"><code>Tabriz_route_heatmap_part3.png</code></p>
+</div>
+<div class="card">
+  <p>نمودار فرودگاه تبریز بخش چهارم:</p>
+  <img src="Tabriz_route_heatmap_part4.png" alt="Tabriz_route_heatmap_part4.png">
+  <p class="small"><code>Tabriz_route_heatmap_part4.png</code></p>
+</div>
+<div class="card">
+  <p>نمودار زیر تعداد پرواز در هر روز در فرودگاه تبریز را مشخص می کند همچنین نشان میدهد که چه تعداد روز از این فرودگاه هیچ دیتایی نداریم:</p>
+  <img src="Tabriz_temporal_coverage.png" alt="Tabriz_temporal_coverage.png">
+  <p class="small"><code>Tabriz_temporal_coverage.png</code></p>
+</div>
+<div class="card">
+  <p>خلاصه ای از  وضعیت داده های تبریز :</p>
+  <img src="Tabriz_summary.png" alt="Tabriz_summary.png">
+  <p class="small"><code>Tabriz_summary.png</code></p>
+</div>
+  </div>
 </body>
 </html>
