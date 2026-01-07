@@ -1,69 +1,375 @@
 <!doctype html>
-<html lang="fa" dir="rtl">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>فهرست گزارش‌ها</title>
+  <title>Final Project Report Portal</title>
   <style>
-    body {
-      font-family: sans-serif;
-      margin: 24px;
-      line-height: 2.0;
-      background: #fafafa;
+    :root {
+      --bg: #0b1020;
+      --card: rgba(255,255,255,0.06);
+      --card2: rgba(255,255,255,0.08);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.72);
+      --border: rgba(255,255,255,0.12);
+      --accent: #7dd3fc;
+      --accent2: #a78bfa;
+      --shadow: 0 18px 50px rgba(0,0,0,0.35);
     }
-    .container {
-      max-width: 980px;
+
+    [data-theme="light"] {
+      --bg: #f6f7fb;
+      --card: rgba(255,255,255,0.85);
+      --card2: rgba(255,255,255,0.95);
+      --text: rgba(15,23,42,0.92);
+      --muted: rgba(15,23,42,0.65);
+      --border: rgba(15,23,42,0.10);
+      --accent: #0284c7;
+      --accent2: #7c3aed;
+      --shadow: 0 16px 45px rgba(2,8,23,0.08);
+    }
+
+    html, body {
+      height: 100%;
+      background: radial-gradient(1200px 700px at 15% 10%, rgba(167,139,250,0.25), transparent 60%),
+                  radial-gradient(1200px 700px at 80% 0%, rgba(125,211,252,0.22), transparent 55%),
+                  var(--bg);
+      color: var(--text);
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      line-height: 1.75;
+      scroll-behavior: smooth;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    a:hover { text-decoration: underline; }
+
+    .wrap {
+      max-width: 1100px;
       margin: 0 auto;
+      padding: 18px 18px 60px 18px;
     }
-    h1 { margin: 0 0 12px 0; }
-    h2 { margin-top: 32px; }
-    p { margin: 10px 0; }
-    .card {
-      background: #fff;
-      border: 1px solid #e3e3e3;
-      border-radius: 14px;
-      padding: 14px;
-      margin: 14px 0;
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(to bottom, rgba(0,0,0,0.26), transparent);
+      padding: 10px 0;
     }
-    img {
-      width: 100%;
-      height: auto;
-      border-radius: 12px;
-      border: 1px solid #eee;
-      display: block;
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .pill {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.05);
+      padding: 8px 12px;
+      border-radius: 999px;
+      box-shadow: var(--shadow);
+    }
+
+    [data-theme="light"] .pill {
+      background: rgba(255,255,255,0.7);
+    }
+
+    .btn {
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.95rem;
+    }
+    .btn:hover {
+      background: rgba(255,255,255,0.10);
+    }
+
+    .hero {
       margin-top: 10px;
+      border: 1px solid var(--border);
+      background: linear-gradient(135deg, rgba(125,211,252,0.14), rgba(167,139,250,0.10));
+      border-radius: 18px;
+      padding: 18px 18px;
+      box-shadow: var(--shadow);
     }
-    .note {
-      color: #555;
-      font-size: 0.98rem;
+
+    .hero h1 {
+      margin: 0 0 6px 0;
+      font-size: clamp(1.6rem, 2.4vw, 2.2rem);
+      letter-spacing: -0.02em;
     }
-    .small {
-      color: #666;
+
+    .hero .sub {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .chip {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.05);
+      padding: 6px 10px;
+      border-radius: 999px;
+      color: var(--muted);
       font-size: 0.92rem;
     }
-    a { color: #0b66c3; }
-    .warn {
-      background: #fff3cd;
-      border: 1px solid #ffeeba;
-      padding: 10px 12px;
-      border-radius: 12px;
-      margin: 12px 0;
+
+    [data-theme="light"] .chip {
+      background: rgba(255,255,255,0.75);
     }
-    code { direction:ltr; unicode-bidi: embed; }
+
+    .section {
+      margin-top: 18px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      border-radius: 18px;
+      padding: 16px 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .section h2 {
+      margin: 0 0 8px 0;
+      font-size: 1.25rem;
+      letter-spacing: -0.01em;
+    }
+
+    .note {
+      margin: 0 0 12px 0;
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 14px;
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      background: var(--card2);
+      border-radius: 16px;
+      padding: 12px;
+    }
+
+    .card p {
+      margin: 0 0 10px 0;
+      color: var(--text);
+    }
+
+    .img {
+      width: 100%;
+      height: auto;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.12);
+      display: block;
+      cursor: zoom-in;
+    }
+
+    [data-theme="light"] .img {
+      border: 1px solid rgba(15,23,42,0.10);
+    }
+
+    .warn {
+      border: 1px solid rgba(255, 193, 7, 0.35);
+      background: rgba(255, 193, 7, 0.12);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      margin-top: 10px;
+    }
+
+    .footer {
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      text-align: center;
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      z-index: 200;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox-inner {
+      max-width: 1100px;
+      width: 100%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 12px;
+    }
+    .lightbox img {
+      width: 100%;
+      height: auto;
+      border-radius: 14px;
+      display: block;
+    }
+    .lightbox .cap {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .lightbox .x {
+      float: right;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.08);
+      color: var(--text);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.95rem;
+    }
   </style>
 </head>
+
 <body>
-  <div class="container">
-    <h1>فهرست گزارش‌ها</h1>
-<p class="note">روی هر عنوان کلیک کن تا گزارش مربوطه باز شود.</p>
-<ul>
-<li><a href="outputs/airport_analysis_output/exp1/report.html">Data Quality + Summary</a></li>
-<li><a href="outputs/airport_analysis_output/exp2/report.html">Overall Paterns</a></li>
-<li><a href="outputs/airport_analysis_output/exp3/report.html">top routes daily</a></li>
-<li><a href="outputs/airport_analysis_output/exp4/report.html">top routes Weekly</a></li>
-<li><a href="outputs/airport_analysis_output/exp5/report.html">top routes Monthly</a></li>
-<li><a href="outputs/Modeling%20outputs/report.html">Modeling Outputs (VAE, Transformers,...)</a></li>
-</ul>
+  <div class="topbar">
+    <div class="wrap">
+      <div class="topbar-inner">
+        <div class="pill">
+          <a href="#" title="Back to index">← Index</a>
+          <span style="color:var(--muted)">•</span>
+          <span style="color:var(--muted)">Final Project Report Portal</span>
+        </div>
+        <button class="btn" id="themeBtn" type="button">Toggle theme</button>
+      </div>
+    </div>
   </div>
+
+  <div class="wrap">
+    <div class="hero">
+      <h1>Final Project Report Portal</h1>
+      <p class="sub">A clean, polished entry point to all analysis and modeling results.</p>
+      <div class="meta">
+        <span class="chip">Generated: 2026-01-07 04:48</span>
+        <span class="chip">Format: single-page report</span>
+        <span class="chip">Figures embedded</span>
+      </div>
+    </div>
+
+    <div class="section">
+  <h2>Reports</h2>
+  <p class="note">All sections are written in English. Figures are embedded inline, with optional click-to-zoom.</p>
+  <div class="grid">
+    <div class="card">
+  <p style="font-size:1.05rem;margin:0 0 6px 0;"><b>Data Quality + Summary</b></p>
+  <p style="margin:0 0 10px 0;color:var(--muted);">Coverage heatmaps, temporal diagnostics, and concise summaries per airport.</p>
+  <a href="outputs/airport_analysis_output/exp1/report.html">Open report →</a>
+</div><div class="card">
+  <p style="font-size:1.05rem;margin:0 0 6px 0;"><b>Overall Patterns</b></p>
+  <p style="margin:0 0 10px 0;color:var(--muted);">High-level demand trends and top passenger routes across airports.</p>
+  <a href="outputs/airport_analysis_output/exp2/report.html">Open report →</a>
+</div><div class="card">
+  <p style="font-size:1.05rem;margin:0 0 6px 0;"><b>Top Routes — Daily</b></p>
+  <p style="margin:0 0 10px 0;color:var(--muted);">Top 10 most frequent daily routes and summaries for Abadan, Esfahan, and Tabriz.</p>
+  <a href="outputs/airport_analysis_output/exp3/report.html">Open report →</a>
+</div><div class="card">
+  <p style="font-size:1.05rem;margin:0 0 6px 0;"><b>Top Routes — Weekly</b></p>
+  <p style="margin:0 0 10px 0;color:var(--muted);">Weekly aggregation of top routes to highlight stable high-volume patterns.</p>
+  <a href="outputs/airport_analysis_output/exp4/report.html">Open report →</a>
+</div><div class="card">
+  <p style="font-size:1.05rem;margin:0 0 6px 0;"><b>Top Routes — Monthly</b></p>
+  <p style="margin:0 0 10px 0;color:var(--muted);">Monthly aggregation of top routes to capture longer-term dynamics and seasonality.</p>
+  <a href="outputs/airport_analysis_output/exp5/report.html">Open report →</a>
+</div><div class="card">
+  <p style="font-size:1.05rem;margin:0 0 6px 0;"><b>Modeling Outputs (VAE, Transformers, ...)</b></p>
+  <p style="margin:0 0 10px 0;color:var(--muted);">Ordered exactly as captions.csv — clean, review-friendly, and zoomable figures.</p>
+  <a href="outputs/Modeling%20outputs/report.html">Open report →</a>
+</div>
+  </div>
+</div>
+
+    <div class="footer">
+      Built with a custom static report generator • Designed for clean academic review
+    </div>
+  </div>
+
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-inner">
+      <div style="display:flex;justify-content:flex-end;">
+        <button class="x" id="lightboxClose" type="button">Close</button>
+      </div>
+      <img id="lightboxImg" alt="Preview">
+      <div class="cap" id="lightboxCap"></div>
+    </div>
+  </div>
+
+  <script>
+    // Theme toggle
+    (function() {
+      const root = document.documentElement;
+      const saved = localStorage.getItem("theme");
+      if (saved) {
+        root.setAttribute("data-theme", saved);
+      } else {
+        const prefersLight = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
+        if (prefersLight) root.setAttribute("data-theme", "light");
+      }
+      document.getElementById("themeBtn").addEventListener("click", () => {
+        const cur = root.getAttribute("data-theme") || "dark";
+        const next = cur === "light" ? "dark" : "light";
+        root.setAttribute("data-theme", next);
+        localStorage.setItem("theme", next);
+      });
+    })();
+
+    // Lightbox
+    (function() {
+      const lb = document.getElementById("lightbox");
+      const lbImg = document.getElementById("lightboxImg");
+      const lbCap = document.getElementById("lightboxCap");
+      const closeBtn = document.getElementById("lightboxClose");
+
+      function close() {
+        lb.classList.remove("open");
+        lbImg.src = "";
+        lbCap.textContent = "";
+      }
+
+      closeBtn.addEventListener("click", close);
+      lb.addEventListener("click", (e) => {
+        if (e.target === lb) close();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") close();
+      });
+
+      document.querySelectorAll("img[data-lightbox='1']").forEach(img => {
+        img.addEventListener("click", () => {
+          lbImg.src = img.getAttribute("data-full");
+          lbCap.textContent = img.getAttribute("data-cap") || "";
+          lb.classList.add("open");
+        });
+      });
+    })();
+  </script>
 </body>
 </html>

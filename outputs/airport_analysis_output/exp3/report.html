@@ -1,226 +1,504 @@
 <!doctype html>
-<html lang="fa" dir="rtl">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>top routes daily</title>
+  <title>Top Routes — Daily</title>
   <style>
-    body {
-      font-family: sans-serif;
-      margin: 24px;
-      line-height: 2.0;
-      background: #fafafa;
+    :root {
+      --bg: #0b1020;
+      --card: rgba(255,255,255,0.06);
+      --card2: rgba(255,255,255,0.08);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.72);
+      --border: rgba(255,255,255,0.12);
+      --accent: #7dd3fc;
+      --accent2: #a78bfa;
+      --shadow: 0 18px 50px rgba(0,0,0,0.35);
     }
-    .container {
-      max-width: 980px;
+
+    [data-theme="light"] {
+      --bg: #f6f7fb;
+      --card: rgba(255,255,255,0.85);
+      --card2: rgba(255,255,255,0.95);
+      --text: rgba(15,23,42,0.92);
+      --muted: rgba(15,23,42,0.65);
+      --border: rgba(15,23,42,0.10);
+      --accent: #0284c7;
+      --accent2: #7c3aed;
+      --shadow: 0 16px 45px rgba(2,8,23,0.08);
+    }
+
+    html, body {
+      height: 100%;
+      background: radial-gradient(1200px 700px at 15% 10%, rgba(167,139,250,0.25), transparent 60%),
+                  radial-gradient(1200px 700px at 80% 0%, rgba(125,211,252,0.22), transparent 55%),
+                  var(--bg);
+      color: var(--text);
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      line-height: 1.75;
+      scroll-behavior: smooth;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    a:hover { text-decoration: underline; }
+
+    .wrap {
+      max-width: 1100px;
       margin: 0 auto;
+      padding: 18px 18px 60px 18px;
     }
-    h1 { margin: 0 0 12px 0; }
-    h2 { margin-top: 32px; }
-    p { margin: 10px 0; }
-    .card {
-      background: #fff;
-      border: 1px solid #e3e3e3;
-      border-radius: 14px;
-      padding: 14px;
-      margin: 14px 0;
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(to bottom, rgba(0,0,0,0.26), transparent);
+      padding: 10px 0;
     }
-    img {
-      width: 100%;
-      height: auto;
-      border-radius: 12px;
-      border: 1px solid #eee;
-      display: block;
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .pill {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.05);
+      padding: 8px 12px;
+      border-radius: 999px;
+      box-shadow: var(--shadow);
+    }
+
+    [data-theme="light"] .pill {
+      background: rgba(255,255,255,0.7);
+    }
+
+    .btn {
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.95rem;
+    }
+    .btn:hover {
+      background: rgba(255,255,255,0.10);
+    }
+
+    .hero {
       margin-top: 10px;
+      border: 1px solid var(--border);
+      background: linear-gradient(135deg, rgba(125,211,252,0.14), rgba(167,139,250,0.10));
+      border-radius: 18px;
+      padding: 18px 18px;
+      box-shadow: var(--shadow);
     }
-    .note {
-      color: #555;
-      font-size: 0.98rem;
+
+    .hero h1 {
+      margin: 0 0 6px 0;
+      font-size: clamp(1.6rem, 2.4vw, 2.2rem);
+      letter-spacing: -0.02em;
     }
-    .small {
-      color: #666;
+
+    .hero .sub {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .chip {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.05);
+      padding: 6px 10px;
+      border-radius: 999px;
+      color: var(--muted);
       font-size: 0.92rem;
     }
-    a { color: #0b66c3; }
-    .warn {
-      background: #fff3cd;
-      border: 1px solid #ffeeba;
-      padding: 10px 12px;
-      border-radius: 12px;
-      margin: 12px 0;
+
+    [data-theme="light"] .chip {
+      background: rgba(255,255,255,0.75);
     }
-    code { direction:ltr; unicode-bidi: embed; }
+
+    .section {
+      margin-top: 18px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      border-radius: 18px;
+      padding: 16px 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .section h2 {
+      margin: 0 0 8px 0;
+      font-size: 1.25rem;
+      letter-spacing: -0.01em;
+    }
+
+    .note {
+      margin: 0 0 12px 0;
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 14px;
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      background: var(--card2);
+      border-radius: 16px;
+      padding: 12px;
+    }
+
+    .card p {
+      margin: 0 0 10px 0;
+      color: var(--text);
+    }
+
+    .img {
+      width: 100%;
+      height: auto;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.12);
+      display: block;
+      cursor: zoom-in;
+    }
+
+    [data-theme="light"] .img {
+      border: 1px solid rgba(15,23,42,0.10);
+    }
+
+    .warn {
+      border: 1px solid rgba(255, 193, 7, 0.35);
+      background: rgba(255, 193, 7, 0.12);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      margin-top: 10px;
+    }
+
+    .footer {
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      text-align: center;
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      z-index: 200;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox-inner {
+      max-width: 1100px;
+      width: 100%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 12px;
+    }
+    .lightbox img {
+      width: 100%;
+      height: auto;
+      border-radius: 14px;
+      display: block;
+    }
+    .lightbox .cap {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .lightbox .x {
+      float: right;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.08);
+      color: var(--text);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.95rem;
+    }
   </style>
 </head>
+
 <body>
-  <div class="container">
-    <h1>top routes daily</h1>
-<p class="note">در ادامه با پرتردد ترین مسیرهای روزانه 3 فرودگاه آشنا می‌شویم تا مسیرهای احتمالی مدلسازی مشخص شوند:</p>
-<div class="card">
-  <p>10 پرتردد ترین مسیر اول آبادان:</p>
-  <img src="Abadan_THR-Tehran_%28Mehrabad%29_to_ABD-Abadan_Daily.png" alt="Abadan_THR-Tehran_(Mehrabad)_to_ABD-Abadan_Daily.png">
-  <p class="small"><code>Abadan_THR-Tehran_(Mehrabad)_to_ABD-Abadan_Daily.png</code></p>
+  <div class="topbar">
+    <div class="wrap">
+      <div class="topbar-inner">
+        <div class="pill">
+          <a href="../../../index.html" title="Back to index">← Index</a>
+          <span style="color:var(--muted)">•</span>
+          <span style="color:var(--muted)">Top Routes — Daily</span>
+        </div>
+        <button class="btn" id="themeBtn" type="button">Toggle theme</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="hero">
+      <h1>Top Routes — Daily</h1>
+      <p class="sub">Identifying the most frequent daily routes to shortlist modeling candidates.</p>
+      <div class="meta">
+        <span class="chip">Generated: 2026-01-07 04:48</span>
+        <span class="chip">Format: single-page report</span>
+        <span class="chip">Figures embedded</span>
+      </div>
+    </div>
+
+    <div class="section">
+  <h2>Contents</h2>
+  <p class="note">Jump to any section:</p>
+  <ul>
+    <li><a href="#abadan">Abadan — Top 10 Daily Routes</a></li><li><a href="#esfahan">Esfahan — Top 10 Daily Routes</a></li><li><a href="#tabriz">Tabriz — Top 10 Daily Routes</a></li>
+  </ul>
 </div>
-<div class="card">
-  <p></p>
-  <img src="Abadan_ABD-Abadan_to_THR-Tehran_%28Mehrabad%29_Daily.png" alt="Abadan_ABD-Abadan_to_THR-Tehran_(Mehrabad)_Daily.png">
-  <p class="small"><code>Abadan_ABD-Abadan_to_THR-Tehran_(Mehrabad)_Daily.png</code></p>
-</div>
-<div class="card">
-  <p></p>
-  <img src="Abadan_MHD-Mashhad_to_ABD-Abadan_Daily.png" alt="Abadan_MHD-Mashhad_to_ABD-Abadan_Daily.png">
-  <p class="small"><code>Abadan_MHD-Mashhad_to_ABD-Abadan_Daily.png</code></p>
-</div>
-<div class="card">
-  <p></p>
-  <img src="Abadan_ABD-Abadan_to_MHD-Mashhad_Daily.png" alt="Abadan_ABD-Abadan_to_MHD-Mashhad_Daily.png">
-  <p class="small"><code>Abadan_ABD-Abadan_to_MHD-Mashhad_Daily.png</code></p>
-</div>
-<div class="card">
-  <p></p>
-  <img src="Abadan_SYZ-Shiraz_to_ABD-Abadan_Daily.png" alt="Abadan_SYZ-Shiraz_to_ABD-Abadan_Daily.png">
-  <p class="small"><code>Abadan_SYZ-Shiraz_to_ABD-Abadan_Daily.png</code></p>
-</div>
-<div class="card">
-  <p></p>
-  <img src="Abadan_ABD-Abadan_to_SYZ-Shiraz_Daily.png" alt="Abadan_ABD-Abadan_to_SYZ-Shiraz_Daily.png">
-  <p class="small"><code>Abadan_ABD-Abadan_to_SYZ-Shiraz_Daily.png</code></p>
-</div>
-<div class="card">
-  <p></p>
-  <img src="Abadan_ABD-Abadan_to_IFN-Isfahan_Daily.png" alt="Abadan_ABD-Abadan_to_IFN-Isfahan_Daily.png">
-  <p class="small"><code>Abadan_ABD-Abadan_to_IFN-Isfahan_Daily.png</code></p>
-</div>
-<div class="card">
-  <p></p>
-  <img src="Abadan_IFN-Isfahan_to_ABD-Abadan_Daily.png" alt="Abadan_IFN-Isfahan_to_ABD-Abadan_Daily.png">
-  <p class="small"><code>Abadan_IFN-Isfahan_to_ABD-Abadan_Daily.png</code></p>
-</div>
-<div class="card">
-  <p></p>
-  <img src="Abadan_SHJ-Sharjah_to_ABD-Abadan_Daily.png" alt="Abadan_SHJ-Sharjah_to_ABD-Abadan_Daily.png">
-  <p class="small"><code>Abadan_SHJ-Sharjah_to_ABD-Abadan_Daily.png</code></p>
-</div>
-<div class="card">
-  <p></p>
-  <img src="Abadan_ABD-Abadan_to_SHJ-Sharjah_Daily.png" alt="Abadan_ABD-Abadan_to_SHJ-Sharjah_Daily.png">
-  <p class="small"><code>Abadan_ABD-Abadan_to_SHJ-Sharjah_Daily.png</code></p>
-</div>
-<div class="card">
-  <p>10 پرتردد ترین مسیر اول اصفهان :</p>
-  <img src="Esfahan_IFN-Isfahan_to_MHD-Mashhad_Daily.png" alt="Esfahan_IFN-Isfahan_to_MHD-Mashhad_Daily.png">
-  <p class="small"><code>Esfahan_IFN-Isfahan_to_MHD-Mashhad_Daily.png</code></p>
-</div>
-<div class="card">
-  <p></p>
-  <img src="Esfahan_MHD-Mashhad_to_IFN-Isfahan_Daily.png" alt="Esfahan_MHD-Mashhad_to_IFN-Isfahan_Daily.png">
-  <p class="small"><code>Esfahan_MHD-Mashhad_to_IFN-Isfahan_Daily.png</code></p>
-</div>
-<div class="card">
-  <p></p>
-  <img src="Esfahan_IFN-Isfahan_to_THR-Tehran_%28Mehrabad%29_Daily.png" alt="Esfahan_IFN-Isfahan_to_THR-Tehran_(Mehrabad)_Daily.png">
-  <p class="small"><code>Esfahan_IFN-Isfahan_to_THR-Tehran_(Mehrabad)_Daily.png</code></p>
-</div>
-<div class="card">
-  <p></p>
-  <img src="Esfahan_THR-Tehran_%28Mehrabad%29_to_IFN-Isfahan_Daily.png" alt="Esfahan_THR-Tehran_(Mehrabad)_to_IFN-Isfahan_Daily.png">
-  <p class="small"><code>Esfahan_THR-Tehran_(Mehrabad)_to_IFN-Isfahan_Daily.png</code></p>
-</div>
-<div class="card">
-  <p></p>
-  <img src="Esfahan_KIH-Kish_to_IFN-Isfahan_Daily.png" alt="Esfahan_KIH-Kish_to_IFN-Isfahan_Daily.png">
-  <p class="small"><code>Esfahan_KIH-Kish_to_IFN-Isfahan_Daily.png</code></p>
-</div>
-<div class="card">
-  <p></p>
-  <img src="Esfahan_IFN-Isfahan_to_KIH-Kish_Daily.png" alt="Esfahan_IFN-Isfahan_to_KIH-Kish_Daily.png">
-  <p class="small"><code>Esfahan_IFN-Isfahan_to_KIH-Kish_Daily.png</code></p>
-</div>
-<div class="card">
-  <p></p>
-  <img src="Esfahan_AWZ-Ahvaz_to_IFN-Isfahan_Daily.png" alt="Esfahan_AWZ-Ahvaz_to_IFN-Isfahan_Daily.png">
-  <p class="small"><code>Esfahan_AWZ-Ahvaz_to_IFN-Isfahan_Daily.png</code></p>
-</div>
-<div class="card">
-  <p></p>
-  <img src="Esfahan_IFN-Isfahan_to_AWZ-Ahvaz_Daily.png" alt="Esfahan_IFN-Isfahan_to_AWZ-Ahvaz_Daily.png">
-  <p class="small"><code>Esfahan_IFN-Isfahan_to_AWZ-Ahvaz_Daily.png</code></p>
-</div>
-<div class="card">
-  <p></p>
-  <img src="Esfahan_IFN-Isfahan_to_IST-Istanbul_%28Ataturk%29_Daily.png" alt="Esfahan_IFN-Isfahan_to_IST-Istanbul_(Ataturk)_Daily.png">
-  <p class="small"><code>Esfahan_IFN-Isfahan_to_IST-Istanbul_(Ataturk)_Daily.png</code></p>
-</div>
-<div class="card">
-  <p></p>
-  <img src="Esfahan_IST-Istanbul_%28Ataturk%29_to_IFN-Isfahan_Daily.png" alt="Esfahan_IST-Istanbul_(Ataturk)_to_IFN-Isfahan_Daily.png">
-  <p class="small"><code>Esfahan_IST-Istanbul_(Ataturk)_to_IFN-Isfahan_Daily.png</code></p>
-</div>
-<div class="card">
-  <p>10 پرتردد ترین مسیر اول تبریز:</p>
-  <img src="Tabriz_THR-Tehran_%28Mehrabad%29_to_TBZ-Tabriz_Daily.png" alt="Tabriz_THR-Tehran_(Mehrabad)_to_TBZ-Tabriz_Daily.png">
-  <p class="small"><code>Tabriz_THR-Tehran_(Mehrabad)_to_TBZ-Tabriz_Daily.png</code></p>
-</div>
-<div class="card">
-  <p></p>
-  <img src="Tabriz_TBZ-Tabriz_to_THR-Tehran_%28Mehrabad%29_Daily.png" alt="Tabriz_TBZ-Tabriz_to_THR-Tehran_(Mehrabad)_Daily.png">
-  <p class="small"><code>Tabriz_TBZ-Tabriz_to_THR-Tehran_(Mehrabad)_Daily.png</code></p>
-</div>
-<div class="card">
-  <p></p>
-  <img src="Tabriz_MHD-Mashhad_to_TBZ-Tabriz_Daily.png" alt="Tabriz_MHD-Mashhad_to_TBZ-Tabriz_Daily.png">
-  <p class="small"><code>Tabriz_MHD-Mashhad_to_TBZ-Tabriz_Daily.png</code></p>
-</div>
-<div class="card">
-  <p></p>
-  <img src="Tabriz_TBZ-Tabriz_to_MHD-Mashhad_Daily.png" alt="Tabriz_TBZ-Tabriz_to_MHD-Mashhad_Daily.png">
-  <p class="small"><code>Tabriz_TBZ-Tabriz_to_MHD-Mashhad_Daily.png</code></p>
-</div>
-<div class="card">
-  <p></p>
-  <img src="Tabriz_IST-Istanbul_%28Ataturk%29_to_TBZ-Tabriz_Daily.png" alt="Tabriz_IST-Istanbul_(Ataturk)_to_TBZ-Tabriz_Daily.png">
-  <p class="small"><code>Tabriz_IST-Istanbul_(Ataturk)_to_TBZ-Tabriz_Daily.png</code></p>
-</div>
-<div class="card">
-  <p></p>
-  <img src="Tabriz_TBZ-Tabriz_to_IST-Istanbul_%28Ataturk%29_Daily.png" alt="Tabriz_TBZ-Tabriz_to_IST-Istanbul_(Ataturk)_Daily.png">
-  <p class="small"><code>Tabriz_TBZ-Tabriz_to_IST-Istanbul_(Ataturk)_Daily.png</code></p>
-</div>
-<div class="card">
-  <p></p>
-  <img src="Tabriz_TBZ-Tabriz_to_SYZ-Shiraz_Daily.png" alt="Tabriz_TBZ-Tabriz_to_SYZ-Shiraz_Daily.png">
-  <p class="small"><code>Tabriz_TBZ-Tabriz_to_SYZ-Shiraz_Daily.png</code></p>
-</div>
-<div class="card">
-  <p></p>
-  <img src="Tabriz_SYZ-Shiraz_to_TBZ-Tabriz_Daily.png" alt="Tabriz_SYZ-Shiraz_to_TBZ-Tabriz_Daily.png">
-  <p class="small"><code>Tabriz_SYZ-Shiraz_to_TBZ-Tabriz_Daily.png</code></p>
-</div>
-<div class="card">
-  <p></p>
-  <img src="Tabriz_TBZ-Tabriz_to_KIH-Kish_Daily.png" alt="Tabriz_TBZ-Tabriz_to_KIH-Kish_Daily.png">
-  <p class="small"><code>Tabriz_TBZ-Tabriz_to_KIH-Kish_Daily.png</code></p>
-</div>
-<div class="card">
-  <p></p>
-  <img src="Tabriz_KIH-Kish_to_TBZ-Tabriz_Daily.png" alt="Tabriz_KIH-Kish_to_TBZ-Tabriz_Daily.png">
-  <p class="small"><code>Tabriz_KIH-Kish_to_TBZ-Tabriz_Daily.png</code></p>
-</div>
-<div class="card">
-  <p>خلاصه ده مسیر اول آبادان:</p>
-  <img src="Abadan_top10_daily_summary.png" alt="Abadan_top10_daily_summary.png">
-  <p class="small"><code>Abadan_top10_daily_summary.png</code></p>
-</div>
-<div class="card">
-  <p>خلاصه ده مسیر اول اصفهان:</p>
-  <img src="Esfahan_top10_daily_summary.png" alt="Esfahan_top10_daily_summary.png">
-  <p class="small"><code>Esfahan_top10_daily_summary.png</code></p>
-</div>
-<div class="card">
-  <p>خلاصه ده مسیر اول تبریز:</p>
-  <img src="Tabriz_top10_daily_summary.png" alt="Tabriz_top10_daily_summary.png">
-  <p class="small"><code>Tabriz_top10_daily_summary.png</code></p>
+<div class="section" id="abadan">
+  <h2>Abadan — Top 10 Daily Routes</h2>
+  <p class="note">The ten most frequent daily routes and a compact summary.</p>
+  <div class="grid">
+    <div class="card">
+  <p>THR (Tehran Mehrabad) → ABD (Abadan)</p>
+  <img class="img" src="Abadan_THR-Tehran_%28Mehrabad%29_to_ABD-Abadan_Daily.png" data-lightbox="1" data-full="Abadan_THR-Tehran_%28Mehrabad%29_to_ABD-Abadan_Daily.png" data-cap="THR (Tehran Mehrabad) → ABD (Abadan)" alt="Figure">
+  
+</div><div class="card">
+  <p>ABD (Abadan) → THR (Tehran Mehrabad)</p>
+  <img class="img" src="Abadan_ABD-Abadan_to_THR-Tehran_%28Mehrabad%29_Daily.png" data-lightbox="1" data-full="Abadan_ABD-Abadan_to_THR-Tehran_%28Mehrabad%29_Daily.png" data-cap="ABD (Abadan) → THR (Tehran Mehrabad)" alt="Figure">
+  
+</div><div class="card">
+  <p>MHD (Mashhad) → ABD (Abadan)</p>
+  <img class="img" src="Abadan_MHD-Mashhad_to_ABD-Abadan_Daily.png" data-lightbox="1" data-full="Abadan_MHD-Mashhad_to_ABD-Abadan_Daily.png" data-cap="MHD (Mashhad) → ABD (Abadan)" alt="Figure">
+  
+</div><div class="card">
+  <p>ABD (Abadan) → MHD (Mashhad)</p>
+  <img class="img" src="Abadan_ABD-Abadan_to_MHD-Mashhad_Daily.png" data-lightbox="1" data-full="Abadan_ABD-Abadan_to_MHD-Mashhad_Daily.png" data-cap="ABD (Abadan) → MHD (Mashhad)" alt="Figure">
+  
+</div><div class="card">
+  <p>SYZ (Shiraz) → ABD (Abadan)</p>
+  <img class="img" src="Abadan_SYZ-Shiraz_to_ABD-Abadan_Daily.png" data-lightbox="1" data-full="Abadan_SYZ-Shiraz_to_ABD-Abadan_Daily.png" data-cap="SYZ (Shiraz) → ABD (Abadan)" alt="Figure">
+  
+</div><div class="card">
+  <p>ABD (Abadan) → SYZ (Shiraz)</p>
+  <img class="img" src="Abadan_ABD-Abadan_to_SYZ-Shiraz_Daily.png" data-lightbox="1" data-full="Abadan_ABD-Abadan_to_SYZ-Shiraz_Daily.png" data-cap="ABD (Abadan) → SYZ (Shiraz)" alt="Figure">
+  
+</div><div class="card">
+  <p>ABD (Abadan) → IFN (Isfahan)</p>
+  <img class="img" src="Abadan_ABD-Abadan_to_IFN-Isfahan_Daily.png" data-lightbox="1" data-full="Abadan_ABD-Abadan_to_IFN-Isfahan_Daily.png" data-cap="ABD (Abadan) → IFN (Isfahan)" alt="Figure">
+  
+</div><div class="card">
+  <p>IFN (Isfahan) → ABD (Abadan)</p>
+  <img class="img" src="Abadan_IFN-Isfahan_to_ABD-Abadan_Daily.png" data-lightbox="1" data-full="Abadan_IFN-Isfahan_to_ABD-Abadan_Daily.png" data-cap="IFN (Isfahan) → ABD (Abadan)" alt="Figure">
+  
+</div><div class="card">
+  <p>SHJ (Sharjah) → ABD (Abadan)</p>
+  <img class="img" src="Abadan_SHJ-Sharjah_to_ABD-Abadan_Daily.png" data-lightbox="1" data-full="Abadan_SHJ-Sharjah_to_ABD-Abadan_Daily.png" data-cap="SHJ (Sharjah) → ABD (Abadan)" alt="Figure">
+  
+</div><div class="card">
+  <p>ABD (Abadan) → SHJ (Sharjah)</p>
+  <img class="img" src="Abadan_ABD-Abadan_to_SHJ-Sharjah_Daily.png" data-lightbox="1" data-full="Abadan_ABD-Abadan_to_SHJ-Sharjah_Daily.png" data-cap="ABD (Abadan) → SHJ (Sharjah)" alt="Figure">
+  
+</div><div class="card">
+  <p>Abadan — Top 10 daily summary.</p>
+  <img class="img" src="Abadan_top10_daily_summary.png" data-lightbox="1" data-full="Abadan_top10_daily_summary.png" data-cap="Abadan — Top 10 daily summary." alt="Figure">
+  
 </div>
   </div>
+</div>
+<div class="section" id="esfahan">
+  <h2>Esfahan — Top 10 Daily Routes</h2>
+  <p class="note">The ten most frequent daily routes and a compact summary.</p>
+  <div class="grid">
+    <div class="card">
+  <p>IFN (Isfahan) → MHD (Mashhad)</p>
+  <img class="img" src="Esfahan_IFN-Isfahan_to_MHD-Mashhad_Daily.png" data-lightbox="1" data-full="Esfahan_IFN-Isfahan_to_MHD-Mashhad_Daily.png" data-cap="IFN (Isfahan) → MHD (Mashhad)" alt="Figure">
+  
+</div><div class="card">
+  <p>MHD (Mashhad) → IFN (Isfahan)</p>
+  <img class="img" src="Esfahan_MHD-Mashhad_to_IFN-Isfahan_Daily.png" data-lightbox="1" data-full="Esfahan_MHD-Mashhad_to_IFN-Isfahan_Daily.png" data-cap="MHD (Mashhad) → IFN (Isfahan)" alt="Figure">
+  
+</div><div class="card">
+  <p>IFN (Isfahan) → THR (Tehran Mehrabad)</p>
+  <img class="img" src="Esfahan_IFN-Isfahan_to_THR-Tehran_%28Mehrabad%29_Daily.png" data-lightbox="1" data-full="Esfahan_IFN-Isfahan_to_THR-Tehran_%28Mehrabad%29_Daily.png" data-cap="IFN (Isfahan) → THR (Tehran Mehrabad)" alt="Figure">
+  
+</div><div class="card">
+  <p>THR (Tehran Mehrabad) → IFN (Isfahan)</p>
+  <img class="img" src="Esfahan_THR-Tehran_%28Mehrabad%29_to_IFN-Isfahan_Daily.png" data-lightbox="1" data-full="Esfahan_THR-Tehran_%28Mehrabad%29_to_IFN-Isfahan_Daily.png" data-cap="THR (Tehran Mehrabad) → IFN (Isfahan)" alt="Figure">
+  
+</div><div class="card">
+  <p>KIH (Kish) → IFN (Isfahan)</p>
+  <img class="img" src="Esfahan_KIH-Kish_to_IFN-Isfahan_Daily.png" data-lightbox="1" data-full="Esfahan_KIH-Kish_to_IFN-Isfahan_Daily.png" data-cap="KIH (Kish) → IFN (Isfahan)" alt="Figure">
+  
+</div><div class="card">
+  <p>IFN (Isfahan) → KIH (Kish)</p>
+  <img class="img" src="Esfahan_IFN-Isfahan_to_KIH-Kish_Daily.png" data-lightbox="1" data-full="Esfahan_IFN-Isfahan_to_KIH-Kish_Daily.png" data-cap="IFN (Isfahan) → KIH (Kish)" alt="Figure">
+  
+</div><div class="card">
+  <p>AWZ (Ahvaz) → IFN (Isfahan)</p>
+  <img class="img" src="Esfahan_AWZ-Ahvaz_to_IFN-Isfahan_Daily.png" data-lightbox="1" data-full="Esfahan_AWZ-Ahvaz_to_IFN-Isfahan_Daily.png" data-cap="AWZ (Ahvaz) → IFN (Isfahan)" alt="Figure">
+  
+</div><div class="card">
+  <p>IFN (Isfahan) → AWZ (Ahvaz)</p>
+  <img class="img" src="Esfahan_IFN-Isfahan_to_AWZ-Ahvaz_Daily.png" data-lightbox="1" data-full="Esfahan_IFN-Isfahan_to_AWZ-Ahvaz_Daily.png" data-cap="IFN (Isfahan) → AWZ (Ahvaz)" alt="Figure">
+  
+</div><div class="card">
+  <p>IFN (Isfahan) → IST (Istanbul Ataturk)</p>
+  <img class="img" src="Esfahan_IFN-Isfahan_to_IST-Istanbul_%28Ataturk%29_Daily.png" data-lightbox="1" data-full="Esfahan_IFN-Isfahan_to_IST-Istanbul_%28Ataturk%29_Daily.png" data-cap="IFN (Isfahan) → IST (Istanbul Ataturk)" alt="Figure">
+  
+</div><div class="card">
+  <p>IST (Istanbul Ataturk) → IFN (Isfahan)</p>
+  <img class="img" src="Esfahan_IST-Istanbul_%28Ataturk%29_to_IFN-Isfahan_Daily.png" data-lightbox="1" data-full="Esfahan_IST-Istanbul_%28Ataturk%29_to_IFN-Isfahan_Daily.png" data-cap="IST (Istanbul Ataturk) → IFN (Isfahan)" alt="Figure">
+  
+</div><div class="card">
+  <p>Esfahan — Top 10 daily summary.</p>
+  <img class="img" src="Esfahan_top10_daily_summary.png" data-lightbox="1" data-full="Esfahan_top10_daily_summary.png" data-cap="Esfahan — Top 10 daily summary." alt="Figure">
+  
+</div>
+  </div>
+</div>
+<div class="section" id="tabriz">
+  <h2>Tabriz — Top 10 Daily Routes</h2>
+  <p class="note">The ten most frequent daily routes and a compact summary.</p>
+  <div class="grid">
+    <div class="card">
+  <p>THR (Tehran Mehrabad) → TBZ (Tabriz)</p>
+  <img class="img" src="Tabriz_THR-Tehran_%28Mehrabad%29_to_TBZ-Tabriz_Daily.png" data-lightbox="1" data-full="Tabriz_THR-Tehran_%28Mehrabad%29_to_TBZ-Tabriz_Daily.png" data-cap="THR (Tehran Mehrabad) → TBZ (Tabriz)" alt="Figure">
+  
+</div><div class="card">
+  <p>TBZ (Tabriz) → THR (Tehran Mehrabad)</p>
+  <img class="img" src="Tabriz_TBZ-Tabriz_to_THR-Tehran_%28Mehrabad%29_Daily.png" data-lightbox="1" data-full="Tabriz_TBZ-Tabriz_to_THR-Tehran_%28Mehrabad%29_Daily.png" data-cap="TBZ (Tabriz) → THR (Tehran Mehrabad)" alt="Figure">
+  
+</div><div class="card">
+  <p>MHD (Mashhad) → TBZ (Tabriz)</p>
+  <img class="img" src="Tabriz_MHD-Mashhad_to_TBZ-Tabriz_Daily.png" data-lightbox="1" data-full="Tabriz_MHD-Mashhad_to_TBZ-Tabriz_Daily.png" data-cap="MHD (Mashhad) → TBZ (Tabriz)" alt="Figure">
+  
+</div><div class="card">
+  <p>TBZ (Tabriz) → MHD (Mashhad)</p>
+  <img class="img" src="Tabriz_TBZ-Tabriz_to_MHD-Mashhad_Daily.png" data-lightbox="1" data-full="Tabriz_TBZ-Tabriz_to_MHD-Mashhad_Daily.png" data-cap="TBZ (Tabriz) → MHD (Mashhad)" alt="Figure">
+  
+</div><div class="card">
+  <p>IST (Istanbul Ataturk) → TBZ (Tabriz)</p>
+  <img class="img" src="Tabriz_IST-Istanbul_%28Ataturk%29_to_TBZ-Tabriz_Daily.png" data-lightbox="1" data-full="Tabriz_IST-Istanbul_%28Ataturk%29_to_TBZ-Tabriz_Daily.png" data-cap="IST (Istanbul Ataturk) → TBZ (Tabriz)" alt="Figure">
+  
+</div><div class="card">
+  <p>TBZ (Tabriz) → IST (Istanbul Ataturk)</p>
+  <img class="img" src="Tabriz_TBZ-Tabriz_to_IST-Istanbul_%28Ataturk%29_Daily.png" data-lightbox="1" data-full="Tabriz_TBZ-Tabriz_to_IST-Istanbul_%28Ataturk%29_Daily.png" data-cap="TBZ (Tabriz) → IST (Istanbul Ataturk)" alt="Figure">
+  
+</div><div class="card">
+  <p>TBZ (Tabriz) → SYZ (Shiraz)</p>
+  <img class="img" src="Tabriz_TBZ-Tabriz_to_SYZ-Shiraz_Daily.png" data-lightbox="1" data-full="Tabriz_TBZ-Tabriz_to_SYZ-Shiraz_Daily.png" data-cap="TBZ (Tabriz) → SYZ (Shiraz)" alt="Figure">
+  
+</div><div class="card">
+  <p>SYZ (Shiraz) → TBZ (Tabriz)</p>
+  <img class="img" src="Tabriz_SYZ-Shiraz_to_TBZ-Tabriz_Daily.png" data-lightbox="1" data-full="Tabriz_SYZ-Shiraz_to_TBZ-Tabriz_Daily.png" data-cap="SYZ (Shiraz) → TBZ (Tabriz)" alt="Figure">
+  
+</div><div class="card">
+  <p>TBZ (Tabriz) → KIH (Kish)</p>
+  <img class="img" src="Tabriz_TBZ-Tabriz_to_KIH-Kish_Daily.png" data-lightbox="1" data-full="Tabriz_TBZ-Tabriz_to_KIH-Kish_Daily.png" data-cap="TBZ (Tabriz) → KIH (Kish)" alt="Figure">
+  
+</div><div class="card">
+  <p>KIH (Kish) → TBZ (Tabriz)</p>
+  <img class="img" src="Tabriz_KIH-Kish_to_TBZ-Tabriz_Daily.png" data-lightbox="1" data-full="Tabriz_KIH-Kish_to_TBZ-Tabriz_Daily.png" data-cap="KIH (Kish) → TBZ (Tabriz)" alt="Figure">
+  
+</div><div class="card">
+  <p>Tabriz — Top 10 daily summary.</p>
+  <img class="img" src="Tabriz_top10_daily_summary.png" data-lightbox="1" data-full="Tabriz_top10_daily_summary.png" data-cap="Tabriz — Top 10 daily summary." alt="Figure">
+  
+</div>
+  </div>
+</div>
+
+    <div class="footer">
+      Built with a custom static report generator • Designed for clean academic review
+    </div>
+  </div>
+
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-inner">
+      <div style="display:flex;justify-content:flex-end;">
+        <button class="x" id="lightboxClose" type="button">Close</button>
+      </div>
+      <img id="lightboxImg" alt="Preview">
+      <div class="cap" id="lightboxCap"></div>
+    </div>
+  </div>
+
+  <script>
+    // Theme toggle
+    (function() {
+      const root = document.documentElement;
+      const saved = localStorage.getItem("theme");
+      if (saved) {
+        root.setAttribute("data-theme", saved);
+      } else {
+        const prefersLight = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
+        if (prefersLight) root.setAttribute("data-theme", "light");
+      }
+      document.getElementById("themeBtn").addEventListener("click", () => {
+        const cur = root.getAttribute("data-theme") || "dark";
+        const next = cur === "light" ? "dark" : "light";
+        root.setAttribute("data-theme", next);
+        localStorage.setItem("theme", next);
+      });
+    })();
+
+    // Lightbox
+    (function() {
+      const lb = document.getElementById("lightbox");
+      const lbImg = document.getElementById("lightboxImg");
+      const lbCap = document.getElementById("lightboxCap");
+      const closeBtn = document.getElementById("lightboxClose");
+
+      function close() {
+        lb.classList.remove("open");
+        lbImg.src = "";
+        lbCap.textContent = "";
+      }
+
+      closeBtn.addEventListener("click", close);
+      lb.addEventListener("click", (e) => {
+        if (e.target === lb) close();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") close();
+      });
+
+      document.querySelectorAll("img[data-lightbox='1']").forEach(img => {
+        img.addEventListener("click", () => {
+          lbImg.src = img.getAttribute("data-full");
+          lbCap.textContent = img.getAttribute("data-cap") || "";
+          lb.classList.add("open");
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
